@@ -6,7 +6,7 @@ import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from "../spinner/Spinner";
 import { createSelector } from "@reduxjs/toolkit";
 import "./heroesList.scss";
-import { fetchHeroes, heroDeleted } from "../../actions";
+import { fetchHeroes, heroDeleted } from "./heroesSlice";
 
 const HeroesList = () => {
   const filteredHeroesSelector = createSelector(
@@ -30,7 +30,7 @@ const HeroesList = () => {
   const { request } = useHttp();
 
   useEffect(() => {
-    dispatch(fetchHeroes(request));
+    dispatch(fetchHeroes());
   }, []);
 
   const onDelete = useCallback(

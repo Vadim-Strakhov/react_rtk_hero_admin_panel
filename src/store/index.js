@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import heroes from "../reducers/heroes";
-import filters from "../reducers/filters";
+import { heroesReducer } from "../components/heroesList/heroesSlice.js";
+import { filtersReducer } from "../components/heroesFilters/filtersSlice.js";
 
 const stringMiddleware = () => (next) => (action) => {
   if (typeof action === "string") {
@@ -12,7 +12,7 @@ const stringMiddleware = () => (next) => (action) => {
 };
 
 const store = configureStore({
-  reducer: { heroes, filters },
+  reducer: { heroes: heroesReducer, filters: filtersReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(stringMiddleware),
   devTools: process.env.NODE_ENV !== "production",
