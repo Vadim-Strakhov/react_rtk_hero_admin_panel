@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { useHttp } from "../../hooks/http.hook";
-import { fetchHeroes } from "../heroesList/heroesSlice";
 
 const initialState = {
   filters: [],
@@ -33,7 +32,7 @@ const filtersSlice = createSlice({
         state.filters = action.payload;
         state.filtersLoadingStatus = "idle";
       })
-      .addCase(fetchHeroes.rejected, (state) => {
+      .addCase(fetchFilters.rejected, (state) => {
         state.filtersLoadingStatus = "error";
       })
       .addDefaultCase(() => {});
